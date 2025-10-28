@@ -1,0 +1,105 @@
+.dashboard {
+  margin-left: 240px; /* space for sidebar */
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(145deg, #f8fafc, #eef2ff);
+  transition: background 0.3s ease;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Dark Mode */
+.dark .dashboard {
+  background: linear-gradient(145deg, #0f172a, #1e293b);
+}
+
+/* ===== HEADER ===== */
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+  color: #1e3a8a;
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+}
+
+.dark .dashboard-header h1 {
+  color: #93c5fd;
+}
+
+/* ===== CARD CONTAINER ===== */
+.dashboard-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* ===== INDIVIDUAL CARD ===== */
+.dashboard-card {
+  width: 250px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  padding: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-color: #3b82f6;
+}
+
+/* Dark Mode Cards */
+.dark .dashboard-card {
+  background: #1e293b;
+  color: #e5e7eb;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+}
+
+.dark .dashboard-card:hover {
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.1);
+  border-color: #60a5fa;
+}
+
+/* ===== Card Content ===== */
+.dashboard-card h3 {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-card p {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+.dark .dashboard-card h3 {
+  color: #f8fafc;
+}
+
+.dark .dashboard-card p {
+  color: #d1d5db;
+}
+
+/* ===== Fade Animation ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

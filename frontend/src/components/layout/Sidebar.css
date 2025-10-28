@@ -1,0 +1,85 @@
+.sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: #f1f5f9;
+  color: #1e293b;
+  padding: 1.5rem;
+  transition: background 0.3s ease, color 0.3s ease;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.08);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.dark.sidebar {
+  background: #1e293b;
+  color: #f1f5f9;
+  box-shadow: 2px 0 10px rgba(255, 255, 255, 0.05);
+}
+
+/* Title */
+.sidebar-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  letter-spacing: 0.3px;
+}
+
+/* List Layout */
+.sidebar-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* Each Category */
+.sidebar-item {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+.sidebar-item:hover {
+  background: #e2e8f0;
+  transform: translateX(3px);
+}
+
+.dark .sidebar-item:hover {
+  background: #334155;
+}
+
+/* Active Category */
+.sidebar-item.active {
+  background: #dbeafe;
+  color: #1e40af;
+  font-weight: 600;
+  box-shadow: inset 3px 0 0 #3b82f6;
+}
+
+.dark .sidebar-item.active {
+  background: #1e40af;
+  color: #ffffff;
+  box-shadow: inset 3px 0 0 #60a5fa;
+}
+
+/* Fade-in Animation */
+@keyframes fadeInSidebar {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.sidebar {
+  animation: fadeInSidebar 0.4s ease-in-out;
+}

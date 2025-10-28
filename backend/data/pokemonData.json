@@ -1,0 +1,14 @@
+{
+  "buffed": [
+    { "pokemon": "Blaziken", "change": "Healing buffed 7→10%, under 50% HP 10→15%" },
+    { "pokemon": "Darkrai", "change": "Cooldown reduction increased 10%→20%" },
+    { "pokemon": "Gengar", "change": "Levitate speed 10%→20%, Dream Eater healing up" }
+  ],
+  "nerfed": [
+    { "pokemon": "Empoleon", "change": "Lifesteal 25%→15%, Wild Bonus removed" },
+    { "pokemon": "Venusaur", "change": "Solar Beam damage 27.5%→25%" }
+  ],
+  "adjusted": [
+    { "pokemon": "Mega Lucario", "change": "Close Combat now has a 1 s cancel delay" }
+  ]
+}

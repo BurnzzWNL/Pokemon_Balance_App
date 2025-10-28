@@ -1,0 +1,134 @@
+.pokemon-details {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(145deg, #f8fafc, #eef2ff);
+}
+
+.dark .pokemon-details {
+  background: linear-gradient(145deg, #0f172a, #1e293b);
+}
+
+/* ===== MAIN SECTION ===== */
+.pokemon-main {
+  flex: 1;
+  padding: 3rem 2rem;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Back button */
+.back-link {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  text-decoration: none;
+  color: #3b82f6;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.back-link:hover {
+  color: #2563eb;
+}
+
+/* ===== INFO CARD ===== */
+.pokemon-info-card {
+  display: inline-block;
+  background: #ffffff;
+  padding: 2rem 3rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pokemon-info-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+}
+
+.dark .pokemon-info-card {
+  background: #1e293b;
+  color: #f1f5f9;
+}
+
+/* Pokémon Image */
+.pokemon-image {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+/* Pokémon Name */
+.pokemon-name {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+}
+
+.dark .pokemon-name {
+  color: #93c5fd;
+}
+
+/* Description */
+.pokemon-description {
+  font-size: 1rem;
+  color: #475569;
+  margin-bottom: 2rem;
+}
+
+.dark .pokemon-description {
+  color: #cbd5e1;
+}
+
+/* ===== Stats ===== */
+.pokemon-stats {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.stat-box {
+  background: #f1f5f9;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  width: 110px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.stat-box:hover {
+  transform: translateY(-4px);
+  background: #e0f2fe;
+}
+
+.dark .stat-box {
+  background: #334155;
+  color: #e2e8f0;
+}
+
+.dark .stat-box:hover {
+  background: #475569;
+}
+
+.stat-box h3 {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+  color: #1e293b;
+}
+
+.stat-box p {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #3b82f6;
+}
+
+.dark .stat-box h3 {
+  color: #e2e8f0;
+}
+
+.dark .stat-box p {
+  color: #60a5fa;
+}

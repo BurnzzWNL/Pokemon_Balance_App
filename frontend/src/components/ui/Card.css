@@ -1,0 +1,78 @@
+.card {
+  width: 220px;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 1.2rem 1rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  cursor: pointer;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.25); /* soft blue hover glow */
+  background: #f8fafc;
+}
+
+/* Dark Mode */
+.dark.card {
+  background: #1e293b;
+  color: #f1f5f9;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+}
+
+.dark.card:hover {
+  background: #334155;
+  box-shadow: 0 8px 20px rgba(147, 197, 253, 0.25);
+}
+
+/* Image */
+.card-image {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  margin-bottom: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .card-image {
+  transform: scale(1.05);
+}
+
+/* Title */
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e3a8a;
+  margin-bottom: 0.4rem;
+  transition: color 0.3s ease;
+}
+
+.dark .card-title {
+  color: #93c5fd;
+}
+
+/* Text */
+.card-text {
+  font-size: 0.9rem;
+  color: #475569;
+  transition: color 0.3s ease;
+}
+
+.dark .card-text {
+  color: #cbd5e1;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

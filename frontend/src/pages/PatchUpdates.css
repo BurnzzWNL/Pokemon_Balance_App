@@ -1,0 +1,27 @@
+.patch-updates {
+  padding: 2rem;
+  text-align: center;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.patch-updates h1 {
+  font-size: 2rem;
+  color: #1e3a8a;
+  margin-bottom: 1rem;
+}
+
+.patch-updates p {
+  color: #475569;
+  font-size: 1rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
