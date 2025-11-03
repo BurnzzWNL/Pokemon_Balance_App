@@ -5,6 +5,32 @@ import pokemonData from "../data/pokemon_Complete_Details.json";
 import { getDefaultRatings } from "../data/pokemonRatings";
 import "./PokemonDetails.css";
 
+const EvolutionImage = ({ pokemonName, imageName, altText }) => {
+  const [imageSrc, setImageSrc] = useState(null);
+  
+  useEffect(() => {
+    const loadEvolutionImage = async () => {
+      try {
+        const normalizedName = pokemonName.replace(/\s+/g, '_').replace(/[.-]/g, '_');
+        const image = await import(`../data/pokemon/${normalizedName}/evolution/${imageName}`);
+        setImageSrc(image.default);
+      } catch (error) {
+        // Fallback to main Pokemon image
+        setImageSrc(getPokemonImage(altText));
+      }
+    };
+    loadEvolutionImage();
+  }, [pokemonName, imageName, altText]);
+  
+  return (
+    <img 
+      src={imageSrc || getPokemonImage(altText)}
+      alt={altText}
+      className="evolution-image"
+    />
+  );
+};
+
 const PokemonDetails = () => {
   const { name } = useParams();
   const [pokemonDetails, setPokemonDetails] = useState(null);
@@ -14,22 +40,33 @@ const PokemonDetails = () => {
   
   useEffect(() => {
     if (pokemon) {
-      // Use default data structure
-      const defaultData = {
-        name: pokemon.name,
-        description: `${pokemon.name} brings unique abilities and strategic gameplay to the battlefield of Aeos Island.`,
-        ratings: getDefaultRatings(pokemon.name),
-        evolution: {
-          stage: "Basic",
-          levels: [1],
-          evolutionImages: [],
-          evolutionNames: [pokemon.name]
-        },
-        abilities: ["Ability 1", "Ability 2", "Ability 3"],
-        intro: `${pokemon.name} is a ${pokemon.type[0]}-type Pokémon in Pokémon UNITE.`
+      const loadPokemonData = async () => {
+        try {
+          const normalizedName = pokemon.name.replace(/\s+/g, '_').replace(/[.-]/g, '_');
+          const module = await import(`../data/pokemon/${normalizedName}/data.js`);
+          const dataKey = Object.keys(module).find(key => key.includes('Data'));
+          const pokemonData = module[dataKey] || module.default;
+          setPokemonDetails(pokemonData);
+        } catch (error) {
+          // Fallback to default data
+          const defaultData = {
+            name: pokemon.name,
+            description: `${pokemon.name} brings unique abilities and strategic gameplay to the battlefield of Aeos Island.`,
+            ratings: getDefaultRatings(pokemon.name),
+            evolution: {
+              stage: "Basic",
+              levels: [1],
+              evolutionImages: [],
+              evolutionNames: [pokemon.name]
+            },
+            abilities: ["Ability 1", "Ability 2", "Ability 3"],
+            intro: `${pokemon.name} is a ${pokemon.type[0]}-type Pokémon in Pokémon UNITE.`
+          };
+          setPokemonDetails(defaultData);
+        }
+        setLoading(false);
       };
-      setPokemonDetails(defaultData);
-      setLoading(false);
+      loadPokemonData();
     } else {
       setLoading(false);
     }
@@ -123,6 +160,37 @@ const PokemonDetails = () => {
           </div>
         </div>
       </div>
+
+      {pokemonDetails.evolution?.evolutionImages && pokemonDetails.evolution.evolutionImages.length > 1 && (
+        <div className="evolution-section">
+          <div className="evolution-stages">
+            {pokemonDetails.evolution.evolutionImages.map((image, index) => (
+              <React.Fragment key={index}>
+                <div className="evolution-stage">
+                  <div className="evolution-circle">
+                    <EvolutionImage 
+                      pokemonName={pokemon.name}
+                      imageName={image}
+                      altText={pokemonDetails.evolution.evolutionNames?.[index] || `Stage ${index + 1}`}
+                    />
+                  </div>
+                  <div className="evolution-info">
+                    <div className="evolution-name">
+                      {pokemonDetails.evolution.evolutionNames?.[index] || `Stage ${index + 1}`}
+                    </div>
+                    <div className="evolution-level">
+                      LV. {pokemonDetails.evolution.levels?.[index] || index + 1}
+                    </div>
+                  </div>
+                </div>
+                {index < pokemonDetails.evolution.evolutionImages.length - 1 && (
+                  <div className="evolution-arrow">»</div>
+                )}
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
