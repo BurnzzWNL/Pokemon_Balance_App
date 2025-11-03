@@ -1,0 +1,105 @@
+export const pokemonDetails = {
+  "Pawmot": {
+    description: "Pawmot electrifies the battlefield on Aeos Island as a Melee All-Rounder, storing up electricity in its fluffy fur to unleash on opposing Pokémon, slowing them down or even paralyzing them!",
+    ratings: { offense: 4, endurance: 2, mobility: 3, scoring: 2, support: 2 }
+  },
+  "Pikachu": {
+    description: "The Electric Mouse Pokémon uses its signature electric attacks to shock opponents and control the battlefield with stunning moves.",
+    ratings: { offense: 4, endurance: 2, mobility: 3, scoring: 3, support: 2 }
+  },
+  "Charizard": {
+    description: "This Fire/Flying-type Pokémon dominates the battlefield with powerful fire attacks and aerial superiority.",
+    ratings: { offense: 5, endurance: 3, mobility: 2, scoring: 4, support: 1 }
+  },
+  "Greninja": {
+    description: "The Ninja Pokémon strikes from the shadows with incredible speed and water-based attacks.",
+    ratings: { offense: 4, endurance: 2, mobility: 5, scoring: 3, support: 1 }
+  },
+  "Lucario": {
+    description: "The Aura Pokémon senses the emotions of others and fights with both physical and special attacks.",
+    ratings: { offense: 4, endurance: 3, mobility: 3, scoring: 3, support: 2 }
+  }
+};
+
+export const getDefaultRatings = (pokemonName) => {
+  const ratings = {
+    "Absol": { offense: 4, endurance: 2, mobility: 5, scoring: 3, support: 1 },
+    "Aegislash": { offense: 4, endurance: 4, mobility: 2, scoring: 3, support: 2 },
+    "Alcremie": { offense: 2, endurance: 3, mobility: 2, scoring: 2, support: 5 },
+    "Alolan Raichu": { offense: 4, endurance: 2, mobility: 4, scoring: 3, support: 2 },
+    "Alolan Ninetales": { offense: 4, endurance: 2, mobility: 3, scoring: 3, support: 3 },
+    "Armarouge": { offense: 5, endurance: 2, mobility: 2, scoring: 4, support: 2 },
+    "Azumarill": { offense: 3, endurance: 4, mobility: 2, scoring: 3, support: 3 },
+    "Blastoise": { offense: 3, endurance: 5, mobility: 2, scoring: 2, support: 3 },
+    "Blaziken": { offense: 4, endurance: 3, mobility: 3, scoring: 3, support: 2 },
+    "Blissey": { offense: 1, endurance: 4, mobility: 2, scoring: 2, support: 5 },
+    "Buzzwole": { offense: 4, endurance: 4, mobility: 2, scoring: 3, support: 2 },
+    "Ceruledge": { offense: 4, endurance: 3, mobility: 4, scoring: 3, support: 1 },
+    "Chandelure": { offense: 5, endurance: 2, mobility: 2, scoring: 4, support: 2 },
+    "Charizard": { offense: 5, endurance: 3, mobility: 2, scoring: 4, support: 1 },
+    "Cinderace": { offense: 4, endurance: 2, mobility: 3, scoring: 4, support: 2 },
+    "Clefable": { offense: 2, endurance: 3, mobility: 2, scoring: 2, support: 5 },
+    "Comfey": { offense: 1, endurance: 3, mobility: 3, scoring: 2, support: 5 },
+    "Cramorant": { offense: 3, endurance: 2, mobility: 3, scoring: 3, support: 3 },
+    "Crustle": { offense: 2, endurance: 5, mobility: 2, scoring: 2, support: 4 },
+    "Darkrai": { offense: 3, endurance: 2, mobility: 5, scoring: 4, support: 1 },
+    "Decidueye": { offense: 4, endurance: 2, mobility: 3, scoring: 4, support: 2 },
+    "Delphox": { offense: 4, endurance: 2, mobility: 3, scoring: 3, support: 3 },
+    "Dodrio": { offense: 3, endurance: 2, mobility: 5, scoring: 4, support: 1 },
+    "Dragapult": { offense: 4, endurance: 2, mobility: 4, scoring: 4, support: 1 },
+    "Dragonite": { offense: 4, endurance: 3, mobility: 3, scoring: 3, support: 2 },
+    "Duraludon": { offense: 4, endurance: 3, mobility: 2, scoring: 3, support: 3 },
+    "Eldegoss": { offense: 2, endurance: 3, mobility: 3, scoring: 2, support: 5 },
+    "Empoleon": { offense: 4, endurance: 3, mobility: 2, scoring: 3, support: 3 },
+    "Espeon": { offense: 4, endurance: 2, mobility: 3, scoring: 3, support: 3 },
+    "Falinks": { offense: 3, endurance: 4, mobility: 3, scoring: 3, support: 2 },
+    "Garchomp": { offense: 4, endurance: 3, mobility: 3, scoring: 3, support: 2 },
+    "Gardevoir": { offense: 4, endurance: 2, mobility: 2, scoring: 4, support: 3 },
+    "Gengar": { offense: 3, endurance: 2, mobility: 4, scoring: 3, support: 3 },
+    "Glaceon": { offense: 4, endurance: 2, mobility: 2, scoring: 3, support: 4 },
+    "Goodra": { offense: 3, endurance: 4, mobility: 2, scoring: 2, support: 4 },
+    "Greedent": { offense: 2, endurance: 4, mobility: 2, scoring: 3, support: 4 },
+    "Greninja": { offense: 4, endurance: 2, mobility: 5, scoring: 3, support: 1 },
+    "Gyarados": { offense: 4, endurance: 3, mobility: 3, scoring: 3, support: 2 },
+    "Ho-oh": { offense: 4, endurance: 3, mobility: 3, scoring: 4, support: 1 },
+    "Hoopa": { offense: 2, endurance: 3, mobility: 4, scoring: 2, support: 4 },
+    "Inteleon": { offense: 5, endurance: 2, mobility: 3, scoring: 4, support: 1 },
+    "Lapras": { offense: 3, endurance: 4, mobility: 2, scoring: 2, support: 4 },
+    "Latias": { offense: 3, endurance: 3, mobility: 4, scoring: 2, support: 3 },
+    "Latios": { offense: 4, endurance: 2, mobility: 4, scoring: 4, support: 1 },
+    "Leafeon": { offense: 3, endurance: 3, mobility: 4, scoring: 3, support: 2 },
+    "Lucario": { offense: 4, endurance: 3, mobility: 3, scoring: 3, support: 2 },
+    "Machamp": { offense: 4, endurance: 4, mobility: 2, scoring: 3, support: 2 },
+    "Mamoswine": { offense: 3, endurance: 5, mobility: 2, scoring: 2, support: 3 },
+    "Meowscarada": { offense: 4, endurance: 2, mobility: 5, scoring: 3, support: 1 },
+    "Metagross": { offense: 4, endurance: 4, mobility: 2, scoring: 3, support: 2 },
+    "Mew": { offense: 3, endurance: 3, mobility: 4, scoring: 3, support: 2 },
+    "Mewtwo": { offense: 5, endurance: 2, mobility: 3, scoring: 4, support: 1 },
+    "Mimikyu": { offense: 3, endurance: 3, mobility: 3, scoring: 3, support: 3 },
+    "Miraidon": { offense: 5, endurance: 2, mobility: 4, scoring: 4, support: 1 },
+    "Mr. Mime": { offense: 2, endurance: 3, mobility: 2, scoring: 2, support: 5 },
+    "Pawmot": { offense: 4, endurance: 2, mobility: 3, scoring: 2, support: 2 },
+    "Pikachu": { offense: 4, endurance: 2, mobility: 3, scoring: 3, support: 2 },
+    "Psyduck": { offense: 2, endurance: 4, mobility: 2, scoring: 2, support: 5 },
+    "Rapidash": { offense: 3, endurance: 2, mobility: 5, scoring: 3, support: 2 },
+    "Sableye": { offense: 2, endurance: 3, mobility: 4, scoring: 2, support: 4 },
+    "Scizor": { offense: 4, endurance: 3, mobility: 3, scoring: 3, support: 2 },
+    "Slowbro": { offense: 2, endurance: 5, mobility: 1, scoring: 2, support: 5 },
+    "Snorlax": { offense: 2, endurance: 5, mobility: 1, scoring: 2, support: 5 },
+    "Suicune": { offense: 3, endurance: 4, mobility: 3, scoring: 2, support: 3 },
+    "Sylveon": { offense: 4, endurance: 2, mobility: 2, scoring: 3, support: 4 },
+    "Talonflame": { offense: 3, endurance: 2, mobility: 5, scoring: 4, support: 1 },
+    "Tinkaton": { offense: 3, endurance: 3, mobility: 3, scoring: 3, support: 3 },
+    "Trevenant": { offense: 2, endurance: 5, mobility: 2, scoring: 2, support: 4 },
+    "Tsareena": { offense: 4, endurance: 3, mobility: 3, scoring: 3, support: 2 },
+    "Tyranitar": { offense: 4, endurance: 4, mobility: 2, scoring: 3, support: 2 },
+    "Umbreon": { offense: 2, endurance: 5, mobility: 2, scoring: 2, support: 4 },
+    "Urshifu": { offense: 4, endurance: 3, mobility: 3, scoring: 3, support: 2 },
+    "Venusaur": { offense: 4, endurance: 3, mobility: 2, scoring: 3, support: 3 },
+    "Wigglytuff": { offense: 2, endurance: 4, mobility: 2, scoring: 2, support: 5 },
+    "Zacian": { offense: 5, endurance: 3, mobility: 4, scoring: 4, support: 1 },
+    "Zeraora": { offense: 4, endurance: 2, mobility: 5, scoring: 4, support: 1 },
+    "Zoroark": { offense: 4, endurance: 2, mobility: 4, scoring: 3, support: 2 }
+  };
+  return ratings[pokemonName] || { offense: 3, endurance: 3, mobility: 3, scoring: 3, support: 3 };
+};

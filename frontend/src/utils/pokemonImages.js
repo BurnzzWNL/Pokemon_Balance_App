@@ -4,12 +4,13 @@ import Alcremie from "../assets/images/pokemon/Alcremie.png";
 import Alolan_Raichu from "../assets/images/pokemon/Alolan_Raichu.png";
 import Alolan_Ninetales from "../assets/images/pokemon/Alolan-ninetales.png";
 import Armarouge from "../assets/images/pokemon/Armarouge.png";
+import Azumarill from "../assets/images/pokemon/Zzumarill.png";
 import Blastoise from "../assets/images/pokemon/Blastoise.png";
-import Blaziken from "../assets/images/pokemon/Blaziken-2x.png";
+import Blaziken from "../assets/images/pokemon/Blaziken.png";
 import Blissey from "../assets/images/pokemon/Blissey.png";
 import Buzzwole from "../assets/images/pokemon/Buzzwole.png";
 import Ceruledge from "../assets/images/pokemon/Ceruledge.png";
-import Chandelure from "../assets/images/pokemon/Chandelure-2x.png";
+import Chandelure from "../assets/images/pokemon/Chandelure.png";
 import Charizard from "../assets/images/pokemon/Charizard.png";
 import Cinderace from "../assets/images/pokemon/Cinderace.png";
 import Clefable from "../assets/images/pokemon/Clefable.png";
@@ -67,14 +68,13 @@ import Tinkaton from "../assets/images/pokemon/Tinkaton.png";
 import Trevenant from "../assets/images/pokemon/Trevenant.png";
 import Tsareena from "../assets/images/pokemon/Tsareena.png";
 import Tyranitar from "../assets/images/pokemon/Tyranitar.png";
-import Umbreon from "../assets/images/pokemon/Umbreon-2x.png";
+import Umbreon from "../assets/images/pokemon/Umbreon.png";
 import Urshifu from "../assets/images/pokemon/Urshifu.png";
 import Venusaur from "../assets/images/pokemon/Venusaur.png";
 import Wigglytuff from "../assets/images/pokemon/Wigglytuff.png";
 import Zacian from "../assets/images/pokemon/Zacian.png";
 import Zeraora from "../assets/images/pokemon/Zeraora.png";
 import Zoroark from "../assets/images/pokemon/Zoroark.png";
-import Azumarill from "../assets/images/pokemon/Zzumarill.png";
 
 export const pokemonImages = {
   Absol,
@@ -115,7 +115,7 @@ export const pokemonImages = {
   Greedent,
   Greninja,
   Gyarados,
-  "Ho-Oh": Ho_oh,
+  "Ho-oh": Ho_oh,
   Hoopa,
   Inteleon,
   Lapras,
@@ -157,7 +157,6 @@ export const pokemonImages = {
   Zoroark,
 };
 
-// Fallback function to get Pokemon image or placeholder
 export const getPokemonImage = (pokemonName) => {
   return pokemonImages[pokemonName] || `https://img.pokemondb.net/artwork/large/${pokemonName.toLowerCase().replace(/\s+/g, '-')}.jpg`;
 };
