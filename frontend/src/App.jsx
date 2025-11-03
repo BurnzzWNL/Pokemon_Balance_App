@@ -1,9 +1,36 @@
 import React from "react";
-import TestImage from "../TestImage";
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import PokemonDetails from "./pages/PokemonDetails";
+import PatchUpdates from "./pages/PatchUpdates"; // 🔹 Patch Updates page
+import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
+import { ThemeProvider } from "./context/ThemeContext";
+import "./App.css";
 
 const App = () => {
-  return <TestImage />;
+  return (
+    <ThemeProvider>
+      <Router>
+        <div className="app-container">
+          {/* 🔹 Global Navbar */}
+          <Navbar />
+
+          {/* 🔹 Page Routing */}
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/pokemon/:name" element={<PokemonDetails />} />
+              <Route path="/patch-updates" element={<PatchUpdates />} />
+            </Routes>
+          </main>
+
+          {/* 🔹 Global Footer */}
+          <Footer />
+        </div>
+      </Router>
+    </ThemeProvider>
+  );
 };
 
 export default App;
