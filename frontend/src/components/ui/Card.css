@@ -1,68 +1,64 @@
 .card {
-  width: 220px;
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 1.2rem 1rem;
+  background: var(--bg-primary);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  border: 1px solid var(--border-light);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  animation: fadeIn 0.4s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--bg-gradient);
+  transform: scaleX(0);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.25); /* soft blue hover glow */
-  background: #f8fafc;
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary);
 }
 
-/* Dark Mode */
-.dark.card {
-  background: #1e293b;
-  color: #f1f5f9;
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+.card:hover::before {
+  transform: scaleX(1);
 }
 
-.dark.card:hover {
-  background: #334155;
-  box-shadow: 0 8px 20px rgba(147, 197, 253, 0.25);
-}
-
-/* Image */
 .card-image {
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
   object-fit: contain;
-  margin-bottom: 0.8rem;
-  transition: transform 0.3s ease;
+  margin: 0 auto var(--space-md);
+  border-radius: var(--radius-lg);
+  background: var(--bg-secondary);
+  padding: var(--space-sm);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card:hover .card-image {
-  transform: scale(1.05);
+  transform: scale(1.1) rotate(3deg);
 }
 
-/* Title */
 .card-title {
-  font-size: 1.1rem;
+  font-size: 1.125rem;
   font-weight: 600;
-  color: #1e3a8a;
-  margin-bottom: 0.4rem;
-  transition: color 0.3s ease;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
 }
 
-.dark .card-title {
-  color: #93c5fd;
-}
-
-/* Text */
 .card-text {
-  font-size: 0.9rem;
-  color: #475569;
-  transition: color 0.3s ease;
-}
-
-.dark .card-text {
-  color: #cbd5e1;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
 }
 
 /* Fade-in Animation */

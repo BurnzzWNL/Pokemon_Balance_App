@@ -13,15 +13,12 @@ export const ThemeProvider = ({ children }) => {
 
   const toggleDarkMode = () => setDarkMode((prev) => !prev);
 
-  // Apply theme class to <html> root
+  // Apply theme to document root
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
+    const theme = darkMode ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", theme);
+    document.documentElement.classList.toggle("dark", darkMode);
+    localStorage.setItem("theme", theme);
   }, [darkMode]);
 
   return (

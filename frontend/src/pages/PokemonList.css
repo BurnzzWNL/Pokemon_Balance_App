@@ -1,45 +1,86 @@
 .pokemon-list {
-  padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  padding: var(--space-2xl);
+  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .pokemon-list h1 {
   text-align: center;
-  margin-bottom: 2rem;
-  color: var(--text-color);
+  margin-bottom: var(--space-2xl);
+  font-size: 2.5rem;
 }
 
 .pokemon-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-xl);
 }
 
 .pokemon-card {
-  background: var(--card-bg);
-  border-radius: 12px;
-  padding: 1rem;
+  background: var(--bg-primary);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
   text-align: center;
   text-decoration: none;
-  color: var(--text-color);
-  transition: transform 0.2s, box-shadow 0.2s;
-  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.pokemon-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--bg-gradient);
+  transform: scaleX(0);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .pokemon-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary);
+}
+
+.pokemon-card:hover::before {
+  transform: scaleX(1);
 }
 
 .pokemon-image {
-  width: 100%;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   object-fit: contain;
-  margin-bottom: 0.5rem;
+  margin: 0 auto var(--space-md);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: var(--radius-lg);
+  background: var(--bg-secondary);
+  padding: var(--space-sm);
+}
+
+.pokemon-card:hover .pokemon-image {
+  transform: scale(1.1) rotate(5deg);
 }
 
 .pokemon-card h3 {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+  .pokemon-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: var(--space-md);
+  }
+  
+  .pokemon-list {
+    padding: var(--space-lg);
+  }
 }

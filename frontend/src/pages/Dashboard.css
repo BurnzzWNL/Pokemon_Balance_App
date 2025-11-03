@@ -1,95 +1,79 @@
 .dashboard {
-  margin-left: 240px; /* space for sidebar */
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(145deg, #f8fafc, #eef2ff);
-  transition: background 0.3s ease;
-  animation: fadeIn 0.5s ease-in-out;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-2xl);
+  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Dark Mode */
-.dark .dashboard {
-  background: linear-gradient(145deg, #0f172a, #1e293b);
-}
-
-/* ===== HEADER ===== */
 .dashboard-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-2xl);
 }
 
 .dashboard-header h1 {
-  color: #1e3a8a;
-  font-size: 2.4rem;
-  font-weight: 800;
-  letter-spacing: 0.6px;
+  font-size: 3rem;
+  margin-bottom: var(--space-md);
 }
 
-.dark .dashboard-header h1 {
-  color: #93c5fd;
+.dashboard-subtitle {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-/* ===== CARD CONTAINER ===== */
 .dashboard-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
 }
 
-/* ===== INDIVIDUAL CARD ===== */
 .dashboard-card {
-  width: 250px;
-  background: #ffffff;
-  border-radius: 14px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  padding: 1rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-  border: 2px solid transparent;
+  background: var(--bg-primary);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  border: 1px solid var(--border-light);
   cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--bg-gradient);
+  transform: scaleX(0);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dashboard-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  border-color: #3b82f6;
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary);
 }
 
-/* Dark Mode Cards */
-.dark .dashboard-card {
-  background: #1e293b;
-  color: #e5e7eb;
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+.dashboard-card:hover::before {
+  transform: scaleX(1);
 }
 
-.dark .dashboard-card:hover {
-  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.1);
-  border-color: #60a5fa;
-}
-
-/* ===== Card Content ===== */
 .dashboard-card h3 {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #1e293b;
-  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
 }
 
 .dashboard-card p {
-  text-align: center;
-  font-size: 0.95rem;
-  color: #475569;
-}
-
-.dark .dashboard-card h3 {
-  color: #f8fafc;
-}
-
-.dark .dashboard-card p {
-  color: #d1d5db;
+  color: var(--text-secondary);
+  line-height: 1.6;
 }
 
 /* ===== Fade Animation ===== */
