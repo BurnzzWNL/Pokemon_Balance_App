@@ -14,7 +14,7 @@ const Navbar = () => {
       <ul className="nav-links">
         <li><a href="/" className="nav-item">Home</a></li>
         <li><a href="/pokemon" className="nav-item">Pokémon</a></li>
-        <li><a href="/patch" className="nav-item">Patch Updates</a></li>
+        <li><a href="/patch-updates" className="nav-item">Patch Updates</a></li>
         <li><a href="/about" className="nav-item">About</a></li>
       </ul>
 
