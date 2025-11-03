@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
+import PokemonList from "./pages/PokemonList";
 import PokemonDetails from "./pages/PokemonDetails";
 import PatchUpdates from "./pages/PatchUpdates"; // 🔹 Patch Updates page
 import Navbar from "./components/layout/Navbar";
@@ -20,6 +21,7 @@ const App = () => {
           <main className="main-content">
             <Routes>
               <Route path="/" element={<Dashboard />} />
+              <Route path="/pokemon" element={<PokemonList />} />
               <Route path="/pokemon/:name" element={<PokemonDetails />} />
               <Route path="/patch-updates" element={<PatchUpdates />} />
             </Routes>

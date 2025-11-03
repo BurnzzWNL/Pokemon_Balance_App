@@ -21,3 +21,8 @@ export const pokemonImages = {
   Suicune,
   Tinkaton,
 };
+
+// Fallback function to get Pokemon image or placeholder
+export const getPokemonImage = (pokemonName) => {
+  return pokemonImages[pokemonName] || `https://img.pokemondb.net/artwork/large/${pokemonName.toLowerCase().replace(/\s+/g, '-')}.jpg`;
+};

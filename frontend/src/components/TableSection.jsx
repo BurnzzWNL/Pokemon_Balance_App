@@ -4,7 +4,7 @@ import SearchBar from "./ui/SearchBar";
 import Loader from "./Loader";
 import "./TableSection.css";
 import { useTheme } from "../context/ThemeContext";
-import { pokemonImages } from "../utils/pokemonImages";
+import { getPokemonImage } from "../utils/pokemonImages";
 
 const TableSection = ({ title, color, list }) => {
   const { darkMode } = useTheme();
@@ -27,7 +27,7 @@ const TableSection = ({ title, color, list }) => {
       {filteredList.length > 0 ? (
         <div className="card-grid">
           {filteredList.map((item, idx) => {
-            const imageSrc = pokemonImages[item.pokemon];
+            const imageSrc = getPokemonImage(item.pokemon);
 
             return (
               <Card
