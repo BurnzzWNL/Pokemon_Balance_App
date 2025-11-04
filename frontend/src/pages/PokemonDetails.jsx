@@ -11,19 +11,12 @@ const EvolutionImage = ({ pokemonName, imageName, altText }) => {
   useEffect(() => {
     const loadEvolutionImage = async () => {
       try {
-        const normalizedName = pokemonName.replace(/\s+/g, '_').replace(/[.-]/g, '_');
-        const image = await import(`../data/pokemon/${normalizedName}/evolution/${imageName}`);
+        const normalizedName = altText.replace(/\s+/g, '_').replace(/[.-]/g, '_');
+        const image = await import(/* @vite-ignore */ `../data/pokemon/${normalizedName}/images/stat-${altText.toLowerCase().replace(/\s+/g, '-')}.png`);
         setImageSrc(image.default);
       } catch (error) {
-        try {
-          // Try loading from the evolution folder with different naming
-          const cleanImageName = imageName.replace(/\.(png|jpg|jpeg)$/i, '');
-          const image = await import(`../data/pokemon/${normalizedName}/evolution/${cleanImageName}.png`);
-          setImageSrc(image.default);
-        } catch (error2) {
-          // Final fallback to main Pokemon image
-          setImageSrc(getPokemonImage(altText));
-        }
+        // Fallback to stat Pokemon image
+        setImageSrc(getPokemonStatsImage(altText));
       }
     };
     loadEvolutionImage();
@@ -31,7 +24,7 @@ const EvolutionImage = ({ pokemonName, imageName, altText }) => {
   
   return (
     <img 
-      src={imageSrc || getPokemonImage(altText)}
+      src={imageSrc || getPokemonStatsImage(altText)}
       alt={altText}
       className="evolution-image"
     />
@@ -42,6 +35,7 @@ const PokemonDetails = () => {
   const { name } = useParams();
   const [pokemonDetails, setPokemonDetails] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [mainImageSrc, setMainImageSrc] = useState(null);
   
   const pokemon = pokemonData.find(p => p.name === name);
   
@@ -89,7 +83,14 @@ const PokemonDetails = () => {
         }
         setLoading(false);
       };
+      
+      const loadMainImage = async () => {
+        const statImage = await getPokemonStatsImage(pokemon.name);
+        setMainImageSrc(statImage);
+      };
+      
       loadPokemonData();
+      loadMainImage();
     } else {
       setLoading(false);
     }
@@ -115,7 +116,6 @@ const PokemonDetails = () => {
     );
   }
   
-  const imageSrc = getPokemonStatsImage(pokemon.name);
   const ratings = pokemonDetails.ratings;
 
   const renderStars = (rating) => {
@@ -141,7 +141,7 @@ const PokemonDetails = () => {
         </div>
 
         <div className="pokemon-image-center">
-          <img src={imageSrc} alt={`${pokemon.name} stats`} className="pokemon-main-image" />
+          <img src={mainImageSrc || getPokemonImage(pokemon.name)} alt={`${pokemon.name} stats`} className="pokemon-main-image" />
           <div className="pokemon-platform"></div>
         </div>
 

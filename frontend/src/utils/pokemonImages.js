@@ -170,10 +170,11 @@ export const getPokemonImage = (pokemonName) => {
 };
 
 // ✅ function to get Pokemon stats image
-export const getPokemonStatsImage = (pokemonName) => {
+export const getPokemonStatsImage = async (pokemonName) => {
   try {
     const normalizedName = pokemonName.replace(/\s+/g, '_').replace(/[.-]/g, '_');
-    return require(`../data/pokemon/${normalizedName}/images/stats-${pokemonName}.png`);
+    const statImage = await import(`../data/pokemon/${normalizedName}/images/stat-${pokemonName.toLowerCase().replace(/\s+/g, '-')}.png`);
+    return statImage.default;
   } catch (error) {
     return getPokemonImage(pokemonName);
   }
