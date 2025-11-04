@@ -8,8 +8,16 @@
 
 .main-content {
   flex: 1;
+  margin-left: 70px;
   padding-top: 80px;
   padding-bottom: var(--space-xl);
+  transition: margin-left 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+  }
 }
 
 @keyframes fadeIn {

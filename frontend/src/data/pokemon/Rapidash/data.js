@@ -24,7 +24,7 @@ export const rapidashData = {
     ],
     evolutionNames: ["Galarian Ponyta", "Galarian Rapidash"]
   },
-  abilities: ["Psycho Cut", "Dazzling Charge", "Fairy Rush"],
+  abilities: ["Psycho Cut", "Dazzling Charge", "Fairy Rush", "Mystical Fire"],
   intro:
     "Rapidash evolves from Galarian Ponyta and charges through enemies with magical flames. Its high mobility allows it to flank, chase, or escape with ease."
 };

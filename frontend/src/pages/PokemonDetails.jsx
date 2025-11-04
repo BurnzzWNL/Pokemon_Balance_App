@@ -131,7 +131,6 @@ const PokemonDetails = () => {
       <div className="pokemon-details-main">
         <div className="pokemon-info-left">
           <div className="pokemon-name-badge">
-            <span className="pokemon-emoji">😊</span>
             <h1 className="pokemon-name-title">{pokemon.name.toUpperCase()}</h1>
           </div>
           
@@ -227,6 +226,50 @@ const PokemonDetails = () => {
               </div>
             </div>
           )}
+        </div>
+      </div>
+
+      <div className="moves-section">
+        <h3 className="moves-title">{pokemon.name} Moves</h3>
+        <div className="moves-table">
+          <div className="moves-header">
+            <div className="pokemon-info">
+              <div className="pokemon-cell">Pokemon</div>
+              <div className="pokemon-avatar">
+                <img src={getPokemonImage(pokemon.name)} alt={pokemon.name} className="pokemon-moves-image" />
+                <div className="pokemon-moves-name">{pokemon.name}</div>
+              </div>
+            </div>
+          </div>
+          <div className="moves-grid">
+            <div className="move-category">
+              <div className="move-category-title">Base Move</div>
+              <div className="move-item">
+                <img src={getPokemonImage(pokemon.name)} alt="Base Move" className="move-icon" />
+                <span className="move-name">Basic Attack</span>
+              </div>
+              <div className="move-item move-separator">
+                <img src={getPokemonImage(pokemon.name)} alt="Ability" className="move-icon" />
+                <span className="move-name">Passive Ability</span>
+              </div>
+            </div>
+            <div className="move-category">
+              <div className="move-category-title">Upgrade Choices</div>
+              {Array.from({ length: 4 }, (_, index) => (
+                <div key={index} className="move-item">
+                  <img src={getPokemonImage(pokemon.name)} alt={pokemonDetails.abilities?.[index] || `Upgrade ${index + 1}`} className="move-icon" />
+                  <span className="move-name">{pokemonDetails.abilities?.[index] || `Upgrade ${index + 1}`}</span>
+                </div>
+              ))}
+            </div>
+            <div className="move-category unite-move">
+              <div className="move-category-title">UNITE Move</div>
+              <div className="move-item">
+                <img src={getPokemonImage(pokemon.name)} alt="UNITE Move" className="move-icon unite-icon" />
+                <span className="move-name">UNITE Move</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
