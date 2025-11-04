@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import Card from "./ui/Card";
-import SearchBar from "./ui/SearchBar";
 import Loader from "./Loader";
 import "./TableSection.css";
 import { useTheme } from "../context/ThemeContext";
@@ -8,16 +7,31 @@ import { getPokemonImage } from "../utils/pokemonImages";
 
 const TableSection = ({ title, color, list }) => {
   const { darkMode } = useTheme();
-  const [searchTerm, setSearchTerm] = useState("");
 
   if (!list || list.length === 0) return <Loader />;
 
-  const filteredList = list.filter((item) => {
-    if (!item || !item.pokemon || typeof item.pokemon !== 'string') {
-      return false;
-    }
-    return item.pokemon.toLowerCase().includes(searchTerm.toLowerCase());
-  });
+  // ✅ Combine all changes for the same Pokémon into one entry
+  const combinedList = Object.values(
+    list.reduce((acc, { pokemon, change }) => {
+      if (!acc[pokemon]) acc[pokemon] = { pokemon, changes: [] };
+      acc[pokemon].changes.push(change);
+      return acc;
+    }, {})
+  );
+
+  // ✅ Highlight numbers, % and arrows (→, ->)
+  const highlightText = (text) => {
+    const regex = /(\d+(\.\d+)?%|\d+s|→|->|[0-9]+→[0-9]+)/g;
+    return text.split(regex).map((part, idx) =>
+      regex.test(part) ? (
+        <span key={idx} style={{ color, fontWeight: "600" }}>
+          {part}
+        </span>
+      ) : (
+        part
+      )
+    );
+  };
 
   return (
     <section className={`table-section ${darkMode ? "dark" : ""}`}>
@@ -25,30 +39,27 @@ const TableSection = ({ title, color, list }) => {
         {title}
       </h2>
 
-      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <div className="card-grid">
+        {combinedList.map((item, idx) => {
+          const imageSrc = getPokemonImage(item.pokemon);
 
-      {filteredList.length > 0 ? (
-        <div className="card-grid">
-          {filteredList.map((item, idx) => {
-            if (!item || !item.pokemon) {
-              return null;
-            }
-            
-            const imageSrc = getPokemonImage(item.pokemon);
+          // ✅ Combine multiple changes into a single formatted string
+          const combinedChangeText = item.changes.map((c, i) => (
+            <li key={i}>{highlightText(c)}</li>
+          ));
 
-            return (
-              <Card
-                key={`${item.pokemon}-${idx}`}
-                pokemon={item.pokemon}
-                change={item.change || 'No changes specified'}
-                image={imageSrc}
-              />
-            );
-          }).filter(Boolean)}
-        </div>
-      ) : (
-        <p className="no-results">No Pokémon found matching “{searchTerm}”.</p>
-      )}
+          return (
+            <Card
+              key={`${item.pokemon}-${idx}`}
+              pokemon={item.pokemon}
+              change={
+                <ul className="multi-change-list">{combinedChangeText}</ul>
+              }
+              image={imageSrc}
+            />
+          );
+        })}
+      </div>
     </section>
   );
 };
