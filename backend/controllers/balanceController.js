@@ -15,6 +15,18 @@ export const getAllBalances = (req, res) => {
 export const getPokemonByName = (req, res) => {
   try {
     const { name } = req.params;
+    
+    // Validate input
+    if (!name || typeof name !== 'string' || name.trim().length === 0) {
+      return res.status(400).json({ error: 'Invalid pokemon name provided' });
+    }
+    
+    // Sanitize input
+    const sanitizedName = name.trim().replace(/[^a-zA-Z0-9\s.-]/g, '');
+    if (sanitizedName.length === 0) {
+      return res.status(400).json({ error: 'Invalid characters in pokemon name' });
+    }
+    
     const data = readJSONFile("data/pokemonData.json");
 
     const allPokemons = [
@@ -24,13 +36,13 @@ export const getPokemonByName = (req, res) => {
     ];
 
     const pokemon = allPokemons.find(
-      (p) => p.pokemon.toLowerCase() === name.toLowerCase()
+      (p) => p.pokemon && p.pokemon.toLowerCase() === sanitizedName.toLowerCase()
     );
 
     if (pokemon) {
       res.json(pokemon);
     } else {
-      res.status(404).json({ message: `Pokémon '${name}' not found.` });
+      res.status(404).json({ message: `Pokémon '${sanitizedName}' not found.` });
     }
   } catch (error) {
     console.error("Error fetching Pokémon:", error);
