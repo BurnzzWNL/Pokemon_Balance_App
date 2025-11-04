@@ -6,6 +6,10 @@
   overflow: hidden;
 }
 
+[data-theme="dark"] .pokemon-details-container {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
 .pokemon-details-container::before {
   content: '';
   position: absolute;
@@ -27,6 +31,10 @@
   transition: opacity 0.3s;
   position: relative;
   z-index: 10;
+}
+
+[data-theme="dark"] .back-link {
+  color: var(--text-primary);
 }
 
 .back-link:hover {
@@ -78,11 +86,20 @@
   box-shadow: var(--shadow-md);
 }
 
+[data-theme="dark"] .pokemon-description-box {
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid var(--border-light);
+}
+
 .pokemon-description {
   color: var(--text-primary);
   line-height: 1.6;
   margin: 0;
   font-size: 0.95rem;
+}
+
+[data-theme="dark"] .pokemon-description {
+  color: var(--text-primary);
 }
 
 .pokemon-image-center {
@@ -180,6 +197,11 @@
   box-shadow: var(--shadow-md);
 }
 
+[data-theme="dark"] .ratings-container {
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid var(--border-light);
+}
+
 .rating-item {
   display: flex;
   justify-content: space-between;
@@ -198,6 +220,10 @@
   color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+[data-theme="dark"] .rating-label {
+  color: var(--text-secondary);
 }
 
 .stars {
@@ -222,6 +248,23 @@
   margin-top: var(--space-2xl);
   position: relative;
   z-index: 5;
+}
+
+[data-theme="dark"] .evolution-section {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid var(--border-light);
+}
+
+.evolution-title {
+  color: white;
+  text-align: center;
+  margin-bottom: var(--space-lg);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+[data-theme="dark"] .evolution-title {
+  color: var(--text-primary);
 }
 
 .evolution-stages {
@@ -251,6 +294,11 @@
   justify-content: center;
   margin-bottom: var(--space-md);
   border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] .evolution-circle {
+  background: rgba(51, 65, 85, 0.6);
+  border: 3px solid rgba(203, 213, 225, 0.3);
 }
 
 .evolution-image {
@@ -300,10 +348,18 @@
   color: white;
 }
 
+[data-theme="dark"] .loading {
+  color: var(--text-primary);
+}
+
 .pokemon-not-found {
   text-align: center;
   padding: var(--space-2xl);
   color: white;
+}
+
+[data-theme="dark"] .pokemon-not-found {
+  color: var(--text-primary);
 }
 
 @media (max-width: 1024px) {

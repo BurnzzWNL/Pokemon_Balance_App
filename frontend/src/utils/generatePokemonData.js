@@ -19,6 +19,10 @@ const evolutionData = {
 };
 
 export const generateDataFile = (pokemon) => {
+  if (!pokemon || !pokemon.name) {
+    throw new Error('Invalid pokemon data provided');
+  }
+  
   const evolution = evolutionData[pokemon.name] || { stage: "Basic", levels: [1], names: [pokemon.name], images: [`${pokemon.name.toLowerCase()}.png`] };
   
   return `export const ${pokemon.name.toLowerCase().replace(/[^a-z]/g, '')}Data = {

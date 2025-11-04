@@ -168,3 +168,13 @@ export const getPokemonImage = (pokemonName) => {
       .replace(/\s+/g, "-")}.jpg`
   );
 };
+
+// ✅ function to get Pokemon stats image
+export const getPokemonStatsImage = (pokemonName) => {
+  try {
+    const normalizedName = pokemonName.replace(/\s+/g, '_').replace(/[.-]/g, '_');
+    return require(`../data/pokemon/${normalizedName}/images/stats-${pokemonName}.png`);
+  } catch (error) {
+    return getPokemonImage(pokemonName);
+  }
+};

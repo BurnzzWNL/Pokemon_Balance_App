@@ -1,13 +1,20 @@
 // Capitalize the first letter of Pokémon names
-export const capitalize = (str) =>
-  str ? str.charAt(0).toUpperCase() + str.slice(1).toLowerCase() : "";
+export const capitalize = (str) => {
+  if (!str || typeof str !== 'string') return "";
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+};
 
 // Shorten long descriptions (useful for tooltips)
-export const truncateText = (text, maxLength = 80) =>
-  text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+export const truncateText = (text, maxLength = 80) => {
+  if (!text || typeof text !== 'string') return "";
+  if (typeof maxLength !== 'number' || maxLength < 0) maxLength = 80;
+  return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+};
 
 // Get color theme based on Pokémon type (for badges or highlights)
 export const getTypeColor = (type) => {
+  if (!type || typeof type !== 'string') return "#A1A1AA";
+  
   const colors = {
     Fire: "#F87171",
     Water: "#60A5FA",

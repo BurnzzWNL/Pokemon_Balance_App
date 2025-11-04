@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { getPokemonImage } from "../utils/pokemonImages";
+import { getPokemonImage, getPokemonStatsImage } from "../utils/pokemonImages";
 import pokemonData from "../data/pokemon_Complete_Details.json";
 import { getDefaultRatings } from "../data/pokemonRatings";
 import "./PokemonDetails.css";
@@ -15,8 +15,15 @@ const EvolutionImage = ({ pokemonName, imageName, altText }) => {
         const image = await import(`../data/pokemon/${normalizedName}/evolution/${imageName}`);
         setImageSrc(image.default);
       } catch (error) {
-        // Fallback to main Pokemon image
-        setImageSrc(getPokemonImage(altText));
+        try {
+          // Try loading from the evolution folder with different naming
+          const cleanImageName = imageName.replace(/\.(png|jpg|jpeg)$/i, '');
+          const image = await import(`../data/pokemon/${normalizedName}/evolution/${cleanImageName}.png`);
+          setImageSrc(image.default);
+        } catch (error2) {
+          // Final fallback to main Pokemon image
+          setImageSrc(getPokemonImage(altText));
+        }
       }
     };
     loadEvolutionImage();
@@ -42,10 +49,26 @@ const PokemonDetails = () => {
     if (pokemon) {
       const loadPokemonData = async () => {
         try {
+          // Validate pokemon name to prevent path traversal
+          if (!pokemon.name || typeof pokemon.name !== 'string') {
+            throw new Error('Invalid pokemon name');
+          }
+          
           const normalizedName = pokemon.name.replace(/\s+/g, '_').replace(/[.-]/g, '_');
+          
+          // Additional validation - only allow alphanumeric and underscore
+          if (!/^[a-zA-Z0-9_]+$/.test(normalizedName)) {
+            throw new Error('Invalid characters in pokemon name');
+          }
+          
           const module = await import(`../data/pokemon/${normalizedName}/data.js`);
           const dataKey = Object.keys(module).find(key => key.includes('Data'));
           const pokemonData = module[dataKey] || module.default;
+          
+          if (!pokemonData) {
+            throw new Error('No pokemon data found in module');
+          }
+          
           setPokemonDetails(pokemonData);
         } catch (error) {
           // Fallback to default data
@@ -92,7 +115,7 @@ const PokemonDetails = () => {
     );
   }
   
-  const imageSrc = getPokemonImage(pokemon.name);
+  const imageSrc = getPokemonStatsImage(pokemon.name);
   const ratings = pokemonDetails.ratings;
 
   const renderStars = (rating) => {
@@ -118,7 +141,7 @@ const PokemonDetails = () => {
         </div>
 
         <div className="pokemon-image-center">
-          <img src={imageSrc} alt={pokemon.name} className="pokemon-main-image" />
+          <img src={imageSrc} alt={`${pokemon.name} stats`} className="pokemon-main-image" />
           <div className="pokemon-platform"></div>
         </div>
 
@@ -161,10 +184,11 @@ const PokemonDetails = () => {
         </div>
       </div>
 
-      {pokemonDetails.evolution?.evolutionImages && pokemonDetails.evolution.evolutionImages.length > 1 && (
-        <div className="evolution-section">
-          <div className="evolution-stages">
-            {pokemonDetails.evolution.evolutionImages.map((image, index) => (
+      <div className="evolution-section">
+        <h3 className="evolution-title">Evolution Line</h3>
+        <div className="evolution-stages">
+          {pokemonDetails.evolution?.evolutionImages && pokemonDetails.evolution.evolutionImages.length > 0 ? (
+            pokemonDetails.evolution.evolutionImages.map((image, index) => (
               <React.Fragment key={index}>
                 <div className="evolution-stage">
                   <div className="evolution-circle">
@@ -187,10 +211,24 @@ const PokemonDetails = () => {
                   <div className="evolution-arrow">»</div>
                 )}
               </React.Fragment>
-            ))}
-          </div>
+            ))
+          ) : (
+            <div className="evolution-stage">
+              <div className="evolution-circle">
+                <EvolutionImage 
+                  pokemonName={pokemon.name}
+                  imageName={`${pokemon.name}.png`}
+                  altText={pokemon.name}
+                />
+              </div>
+              <div className="evolution-info">
+                <div className="evolution-name">{pokemon.name}</div>
+                <div className="evolution-level">LV. 1</div>
+              </div>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };

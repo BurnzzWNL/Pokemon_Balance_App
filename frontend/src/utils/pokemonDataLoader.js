@@ -1,13 +1,24 @@
 import { getDefaultRatings } from "../data/pokemonRatings";
 
 export const loadPokemonData = async (pokemonName) => {
+  // Validate input
+  if (!pokemonName || typeof pokemonName !== 'string') {
+    throw new Error('Invalid pokemon name provided');
+  }
+  
+  // Sanitize input to prevent path traversal
+  const sanitizedName = pokemonName.replace(/[^a-zA-Z0-9\s._-]/g, '');
+  if (sanitizedName !== pokemonName) {
+    throw new Error('Invalid characters in pokemon name');
+  }
+  
   try {
     // Try different folder name formats
     const folderNames = [
-      pokemonName.replace(/\s+/g, '_').replace(/[.-]/g, '_'),
-      pokemonName.replace(/\s+/g, ''),
-      pokemonName
-    ];
+      sanitizedName.replace(/\s+/g, '_').replace(/[.-]/g, '_'),
+      sanitizedName.replace(/\s+/g, ''),
+      sanitizedName
+    ].filter(name => /^[a-zA-Z0-9_]+$/.test(name)); // Additional validation
     
     let module = null;
     for (const folderName of folderNames) {
@@ -15,6 +26,7 @@ export const loadPokemonData = async (pokemonName) => {
         module = await import(`../data/pokemon/${folderName}/data.js`);
         break;
       } catch (e) {
+        console.warn(`Failed to load data for folder: ${folderName}`);
         continue;
       }
     }
@@ -26,6 +38,7 @@ export const loadPokemonData = async (pokemonName) => {
     
     throw new Error('No module found');
   } catch (error) {
+    console.error(`Error loading pokemon data for ${pokemonName}:`, error);
     // Return default data if individual Pokemon data doesn't exist
     return {
       name: pokemonName,
