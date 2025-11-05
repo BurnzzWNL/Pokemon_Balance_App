@@ -95,31 +95,7 @@ const Dashboard = () => {
         </div>
       </section>
 
-      {/* 🌟 TRENDING SECTION */}
-      <section className="trending-section">
-        <h2 className="trending-title">🔥 Trending Pokémon This Week</h2>
-        <div className="trending-cards">
-          {["Mewtwo", "Cinderace", "Blastoise"].map((pokemon) => (
-            <div
-              key={pokemon}
-              className="trending-card"
-              onClick={() => navigate(`/pokemon/${pokemon}`)}
-            >
-              <img
-                src={getPokemonImage(pokemon)}
-                alt={pokemon}
-                className="trending-img"
-              />
-              <p className="trending-name">{pokemon}</p>
-            </div>
-          ))}
-        </div>
-      </section>
 
-      {/* 🎠 NEW — POKÉMON CAROUSEL SECTION */}
-      <section className="carousel-section">
-        <PokemonCarousel />
-      </section>
 
       {/* 📖 ABOUT SECTION */}
       <section className="about-section">
@@ -156,15 +132,7 @@ const Dashboard = () => {
             <p>© 2025 Pokémon Balance Tracker</p>
           </div>
           
-          <div className="footer-section">
-            <h4>Theme</h4>
-            <button 
-              className="theme-toggle-btn"
-              onClick={toggleTheme}
-            >
-              {darkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
-            </button>
-          </div>
+
         </div>
       </footer>
     </div>
